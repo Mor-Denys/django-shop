@@ -1,0 +1,19 @@
+main {
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+
+.navbar-brand {
+    margin-right: 4%;
+}
+
+.card {
+    width: 14rem;
+    margin-right: 3%;
+    margin-top: 3%;
+}
+
+.position {
+    margin-left: 20%;
+    margin-top: 3%;
+}

@@ -1,0 +1,28 @@
+{% extends 'Main/layout.html' %}
+{% load static %}
+
+{% block title %} {{ category.name }} {% endblock %}
+
+{% block description %}
+{% if category.product.all|length == 0 %}
+<h3 class="position-absolute top-0 start-50 translate-middle" style="margin-top: 7%;">There are currently no products in this category "{{ category.name }}"</h3>
+{% else %}
+<h3 class="position-absolute top-0 start-50 translate-middle" style="margin-top: 7%;">Category products "{{ category.name }}":</h3>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    {% for product in category.product.all %}
+        <div class="card" style="margin-top: 9%;">
+            <img src="{% static product.image %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="price d-flex">
+                    <a href="{% url 'product_url' pk=product.pk %}" class="btn btn-primary">Buy now</a>
+                    <h6 class="position align-items-center"> {{ product.price }}$ </h6>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

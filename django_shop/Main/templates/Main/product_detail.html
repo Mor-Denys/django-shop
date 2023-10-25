@@ -1,0 +1,52 @@
+{% extends 'Main/layout.html' %}
+{% load static %}
+
+{% block title %} {{ detail.name }} {% endblock %}
+
+
+{% block content %}
+    <div class="container" style="margin-top: 5%;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{% static product.image %}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8" style="margin-top: 10%">
+          <div class="card-body" style="margin-left: 10%">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Buy now!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.name }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/order_save">
+            <div class="mb-3">
+              <label for="username" class="form-label">Your Name</label>
+              <input type="text" class="form-control" name="username" id="username" required >
+            </div>
+            <div class="mb-3">
+              <label for="user_gmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" name="user_gmail" id="user_gmail" aria-describedby="emailHelp" required>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <input type="hidden" name="product_id" value="{{ product.id }}" readonly>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            {% csrf_token %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

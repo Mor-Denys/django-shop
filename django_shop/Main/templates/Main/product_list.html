@@ -1,0 +1,21 @@
+{% extends 'Main/layout.html' %}
+{% load static %}
+
+{% block title %} home {% endblock %}
+
+
+{% block content %}
+    {% for product in product_list %}
+        <div class="card">
+            <img src="{% static product.image %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="price d-flex">
+                    <a href="{{ product.get_url }}" class="btn btn-primary">Buy now</a>
+                    <h6 class="position align-items-center"> {{ product.price }}$ </h6>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
